@@ -20,3 +20,9 @@ springdoc:
     path: /swagger-ui.html
     tags-sorter: alpha
     operations-sorter: alpha
+
+de:
+  flapdoodle:
+    mongodb:
+      embedded:
+        version: 4.4.18

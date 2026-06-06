@@ -82,6 +82,13 @@
             <version>2.7.0</version>
         </dependency>
 
+        <!-- Embedded MongoDB for local dev sandbox -->
+        <dependency>
+            <groupId>de.flapdoodle.embed</groupId>
+            <artifactId>de.flapdoodle.embed.mongo.spring30x</artifactId>
+            <version>4.11.0</version>
+        </dependency>
+
         <!-- Test -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
