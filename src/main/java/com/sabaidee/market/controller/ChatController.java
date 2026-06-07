@@ -4,7 +4,6 @@ import com.sabaidee.market.dto.request.ChatMessageRequest;
 import com.sabaidee.market.dto.response.ApiResponse;
 import com.sabaidee.market.exception.ResourceNotFoundException;
 import com.sabaidee.market.model.ChatMessage;
-import com.sabaidee.market.model.User;
 import com.sabaidee.market.repository.ChatMessageRepository;
 import com.sabaidee.market.repository.UserRepository;
 import com.sabaidee.market.service.SseNotificationService;
