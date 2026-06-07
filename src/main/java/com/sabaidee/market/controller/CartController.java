@@ -35,15 +35,17 @@ public class CartController {
     @PutMapping("/{productId}")
     public ResponseEntity<ApiResponse<List<CartItem>>> updateCartItem(Principal principal,
                                                                        @PathVariable String productId,
-                                                                       @RequestParam int quantity) {
-        List<CartItem> cart = cartService.updateCartItemQuantity(principal.getName(), productId, quantity);
+                                                                       @RequestParam int quantity,
+                                                                       @RequestParam(required = false) String variant) {
+        List<CartItem> cart = cartService.updateCartItemQuantity(principal.getName(), productId, quantity, variant);
         return ResponseEntity.ok(ApiResponse.success(cart));
     }
 
     @DeleteMapping("/{productId}")
     public ResponseEntity<ApiResponse<List<CartItem>>> removeFromCart(Principal principal,
-                                                                       @PathVariable String productId) {
-        List<CartItem> cart = cartService.removeFromCart(principal.getName(), productId);
+                                                                       @PathVariable String productId,
+                                                                       @RequestParam(required = false) String variant) {
+        List<CartItem> cart = cartService.removeFromCart(principal.getName(), productId, variant);
         return ResponseEntity.ok(ApiResponse.success(cart));
     }
 

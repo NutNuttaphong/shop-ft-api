@@ -32,9 +32,10 @@ public class CartService {
         Product product = productRepository.findById(request.getProductId())
                 .orElseThrow(() -> new ResourceNotFoundException("ไม่พบสินค้ารหัส: " + request.getProductId()));
 
-        // Check if product already in cart
+        // Check if product already in cart with same variant
         CartItem existingItem = user.getCart().stream()
-                .filter(item -> item.getProductId().equals(request.getProductId()))
+                .filter(item -> item.getProductId().equals(request.getProductId()) && 
+                        java.util.Objects.equals(item.getVariant(), request.getVariantName()))
                 .findFirst()
                 .orElse(null);
 
@@ -50,31 +51,40 @@ public class CartService {
                 throw new InsufficientStockException(
                         "สินค้า \"" + product.getName() + "\" มีสต็อกเหลือ " + product.getStock() + " ชิ้น");
             }
+            
+            String displayName = product.getName();
+            if (request.getVariantName() != null && !request.getVariantName().isEmpty()) {
+                displayName += " (" + request.getVariantName() + ")";
+            }
+
             CartItem newItem = CartItem.builder()
                     .productId(product.getId())
-                    .name(product.getName())
-                    .price(product.getPrice())
+                    .name(displayName)
+                    .price(product.getPrice() + request.getPriceAdjustment())
                     .quantity(request.getQuantity())
                     .imageUrl(product.getImageUrl())
                     .stock(product.getStock())
                     .category(product.getCategory())
+                    .variant(request.getVariantName())
                     .build();
             user.getCart().add(newItem);
         }
 
         userRepository.save(user);
-        log.info("เพิ่มสินค้า {} ลงตะกร้าของ {}", product.getName(), username);
+        log.info("เพิ่มสินค้า {} ({}) ลงตะกร้าของ {}", product.getName(), request.getVariantName(), username);
         return user.getCart();
     }
 
-    public List<CartItem> updateCartItemQuantity(String username, String productId, int quantity) {
+    public List<CartItem> updateCartItemQuantity(String username, String productId, int quantity, String variant) {
         User user = findUser(username);
 
         if (quantity <= 0) {
-            user.getCart().removeIf(item -> item.getProductId().equals(productId));
+            user.getCart().removeIf(item -> item.getProductId().equals(productId) && 
+                    java.util.Objects.equals(item.getVariant(), variant));
         } else {
             CartItem item = user.getCart().stream()
-                    .filter(i -> i.getProductId().equals(productId))
+                    .filter(i -> i.getProductId().equals(productId) && 
+                            java.util.Objects.equals(i.getVariant(), variant))
                     .findFirst()
                     .orElseThrow(() -> new ResourceNotFoundException("ไม่พบสินค้านี้ในตะกร้า"));
 
@@ -92,11 +102,12 @@ public class CartService {
         return user.getCart();
     }
 
-    public List<CartItem> removeFromCart(String username, String productId) {
+    public List<CartItem> removeFromCart(String username, String productId, String variant) {
         User user = findUser(username);
-        user.getCart().removeIf(item -> item.getProductId().equals(productId));
+        user.getCart().removeIf(item -> item.getProductId().equals(productId) && 
+                java.util.Objects.equals(item.getVariant(), variant));
         userRepository.save(user);
-        log.info("ลบสินค้า {} ออกจากตะกร้าของ {}", productId, username);
+        log.info("ลบสินค้า {} ({}) ออกจากตะกร้าของ {}", productId, variant, username);
         return user.getCart();
     }
 

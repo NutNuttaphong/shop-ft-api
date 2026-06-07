@@ -39,4 +39,12 @@ public class Promotion {
     private String startDate;
 
     private String endDate;
+
+    private String type; // COUPON, FLASH_SALE, BUNDLE_DEAL, DISCOUNT_CAMPAIGN
+
+    private java.util.List<String> productIds;
+
+    private Integer bundleQty;
+
+    private String targetCategory;
 }

@@ -1,9 +1,11 @@
 package com.sabaidee.market.dto.request;
 
+import com.sabaidee.market.model.CartItem;
 import com.sabaidee.market.model.enums.PaymentMethod;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
+import java.util.List;
 
 @Data
 public class CheckoutRequest {
@@ -23,4 +25,12 @@ public class CheckoutRequest {
     private boolean slipUploaded;
 
     private String slipName;
+
+    private List<CartItem> items;
+
+    private String promoCode;
+
+    private double discount;
+
+    private double coinsUsed;
 }

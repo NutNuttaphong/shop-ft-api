@@ -17,4 +17,5 @@ public class CartItem {
     private String imageUrl;
     private int stock;
     private String category;
+    private String variant;
 }

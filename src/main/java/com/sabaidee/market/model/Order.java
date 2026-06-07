@@ -39,8 +39,28 @@ public class Order {
 
     private String slipName;
 
+    private double discount;
+
+    private double coinsUsed;
+
+    private String promoCode;
+
     @Builder.Default
     private OrderStatus status = OrderStatus.PENDING;
+
+    private String trackingNumber;
+
+    private String carrier;
+
+    private String returnReason;
+
+    private String returnDescription;
+
+    private boolean disputeOpened;
+
+    private String disputeReason;
+
+    private String disputeStatus; // NONE, PENDING, RESOLVED
 
     @CreatedDate
     private Instant createdAt;

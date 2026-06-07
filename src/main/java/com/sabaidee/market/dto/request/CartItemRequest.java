@@ -12,4 +12,8 @@ public class CartItemRequest {
 
     @Min(value = 1, message = "จำนวนต้องมากกว่า 0")
     private int quantity;
+
+    private String variantName;
+
+    private double priceAdjustment;
 }

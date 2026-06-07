@@ -16,4 +16,5 @@ public class OrderItem {
     private int quantity;
     private String imageUrl;
     private String category;
+    private String variant;
 }

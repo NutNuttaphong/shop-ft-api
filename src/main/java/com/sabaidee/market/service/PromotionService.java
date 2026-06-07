@@ -58,6 +58,10 @@ public class PromotionService {
                 .imageUrl(request.getImageUrl())
                 .startDate(request.getStartDate())
                 .endDate(request.getEndDate())
+                .type(request.getType())
+                .productIds(request.getProductIds())
+                .bundleQty(request.getBundleQty())
+                .targetCategory(request.getTargetCategory())
                 .build();
 
         log.info("สร้างโปรโมชันใหม่: {}", promotion.getName());
@@ -77,6 +81,10 @@ public class PromotionService {
         promotion.setImageUrl(request.getImageUrl());
         promotion.setStartDate(request.getStartDate());
         promotion.setEndDate(request.getEndDate());
+        promotion.setType(request.getType());
+        promotion.setProductIds(request.getProductIds());
+        promotion.setBundleQty(request.getBundleQty());
+        promotion.setTargetCategory(request.getTargetCategory());
 
         log.info("อัพเดทโปรโมชัน: {}", promotion.getName());
         return promotionRepository.save(promotion);

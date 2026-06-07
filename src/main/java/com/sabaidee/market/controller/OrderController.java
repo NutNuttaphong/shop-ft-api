@@ -55,4 +55,38 @@ public class OrderController {
         Order order = orderService.updateOrderStatus(id, status);
         return ResponseEntity.ok(ApiResponse.success(order));
     }
+
+    @PutMapping("/{id}/return")
+    public ResponseEntity<ApiResponse<Order>> requestReturn(
+            @PathVariable String id,
+            @Valid @RequestBody com.sabaidee.market.dto.request.OrderReturnRequest request,
+            Principal principal) {
+        Order order = orderService.requestReturn(id, principal.getName(), request);
+        return ResponseEntity.ok(ApiResponse.success(order));
+    }
+
+    @PutMapping("/{id}/resolve-return")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<ApiResponse<Order>> resolveReturn(
+            @PathVariable String id,
+            @RequestParam boolean approve) {
+        Order order = orderService.resolveReturn(id, approve);
+        return ResponseEntity.ok(ApiResponse.success(order));
+    }
+
+    @PutMapping("/{id}/dispute")
+    public ResponseEntity<ApiResponse<Order>> openDispute(
+            @PathVariable String id,
+            @Valid @RequestBody com.sabaidee.market.dto.request.OrderDisputeRequest request,
+            Principal principal) {
+        Order order = orderService.openDispute(id, principal.getName(), request);
+        return ResponseEntity.ok(ApiResponse.success(order));
+    }
+
+    @PutMapping("/{id}/resolve-dispute")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<ApiResponse<Order>> resolveDispute(@PathVariable String id) {
+        Order order = orderService.resolveDispute(id);
+        return ResponseEntity.ok(ApiResponse.success(order));
+    }
 }

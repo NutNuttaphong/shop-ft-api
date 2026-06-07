@@ -34,4 +34,12 @@ public class PromotionRequest {
     private String startDate;
 
     private String endDate;
+
+    private String type;
+
+    private java.util.List<String> productIds;
+
+    private Integer bundleQty;
+
+    private String targetCategory;
 }
