@@ -8,6 +8,13 @@ spring:
     mongodb:
       uri: mongodb://localhost:27017/sabaidee_market
 
+logging:
+  level:
+    root: INFO
+    org.springframework: WARN
+    org.mongodb.driver: WARN
+    de.flapdoodle: WARN
+
 app:
   jwt:
     secret: sabaidee-market-secret-key-2024-very-long-and-secure-key-minimum-256-bits
@@ -26,3 +33,4 @@ de:
     mongodb:
       embedded:
         version: 4.4.18
+
