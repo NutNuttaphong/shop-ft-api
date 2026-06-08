@@ -4,9 +4,8 @@ server:
 spring:
   application:
     name: sabaidee-market-api
-  data:
-    mongodb:
-      uri: mongodb://localhost:27017/sabaidee_market
+  profiles:
+    active: dev
 
 logging:
   level:
@@ -28,9 +27,30 @@ springdoc:
     tags-sorter: alpha
     operations-sorter: alpha
 
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/sabaidee_market
+
 de:
   flapdoodle:
     mongodb:
       embedded:
         version: 4.4.18
+
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+  autoconfigure:
+    exclude:
+      - de.flapdoodle.embed.mongo.spring.autoconfigure.EmbeddedMongoAutoConfiguration
+  data:
+    mongodb:
+      uri: ${SPRING_DATA_MONGODB_URI:mongodb://acela.proxy.rlwy.net:20120/sabaidee_market}
 
