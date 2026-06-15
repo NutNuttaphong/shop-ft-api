@@ -13,4 +13,8 @@ public class CustomerInfo {
     private String name;
     private String phone;
     private String address;
+    private String taxName;
+    private String taxId;
+    private String taxAddress;
+    private Boolean taxInvoiceRequested;
 }

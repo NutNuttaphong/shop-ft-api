@@ -33,4 +33,12 @@ public class CheckoutRequest {
     private double discount;
 
     private double coinsUsed;
+
+    private String taxName;
+
+    private String taxId;
+
+    private String taxAddress;
+
+    private Boolean taxInvoiceRequested;
 }
