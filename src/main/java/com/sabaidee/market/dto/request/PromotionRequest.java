@@ -27,6 +27,7 @@ public class PromotionRequest {
     @Min(value = 0, message = "ยอดขั้นต่ำต้องไม่ติดลบ")
     private double minPurchase;
 
+    @com.fasterxml.jackson.annotation.JsonProperty("isActive")
     private boolean isActive;
 
     private String imageUrl;

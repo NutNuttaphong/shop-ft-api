@@ -32,6 +32,7 @@ public class Promotion {
 
     private double minPurchase;
 
+    @com.fasterxml.jackson.annotation.JsonProperty("isActive")
     private boolean isActive;
 
     private String imageUrl;
