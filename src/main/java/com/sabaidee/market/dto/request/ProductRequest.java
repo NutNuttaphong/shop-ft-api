@@ -21,6 +21,8 @@ public class ProductRequest {
 
     private String imageUrl;
 
+    private String videoUrl;
+
     @Min(value = 0, message = "จำนวนสต็อกต้องไม่ติดลบ")
     private int stock;
 }

@@ -41,6 +41,7 @@ public class ProductService {
                 .description(request.getDescription())
                 .category(request.getCategory())
                 .imageUrl(request.getImageUrl())
+                .videoUrl(request.getVideoUrl())
                 .stock(request.getStock())
                 .build();
 
@@ -56,6 +57,7 @@ public class ProductService {
         product.setDescription(request.getDescription());
         product.setCategory(request.getCategory());
         product.setImageUrl(request.getImageUrl());
+        product.setVideoUrl(request.getVideoUrl());
         product.setStock(request.getStock());
 
         log.info("อัพเดทสินค้า: {}", product.getName());

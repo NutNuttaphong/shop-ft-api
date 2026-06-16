@@ -30,6 +30,8 @@ public class Product {
 
     private String imageUrl;
 
+    private String videoUrl;
+
     private int stock;
 
     @CreatedDate
