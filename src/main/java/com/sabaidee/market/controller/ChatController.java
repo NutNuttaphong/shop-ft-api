@@ -41,10 +41,18 @@ public class ChatController {
         userRepository.findByUsername(receiverUsername)
                 .orElseThrow(() -> new ResourceNotFoundException("ไม่พบผู้รับ: " + receiverUsername));
 
+        // Validate that at least message or mediaUrl is present
+        if ((request.getMessage() == null || request.getMessage().trim().isEmpty()) && 
+            (request.getMediaUrl() == null || request.getMediaUrl().trim().isEmpty())) {
+            return ResponseEntity.badRequest().body(ApiResponse.error("กรุณากรอกข้อความหรือแนบไฟล์รูปภาพ/วิดีโอ", 400));
+        }
+
         ChatMessage chatMessage = ChatMessage.builder()
                 .sender(senderUsername)
                 .receiver(receiverUsername)
                 .message(request.getMessage())
+                .mediaUrl(request.getMediaUrl())
+                .mediaType(request.getMediaType())
                 .timestamp(Instant.now())
                 .build();
 

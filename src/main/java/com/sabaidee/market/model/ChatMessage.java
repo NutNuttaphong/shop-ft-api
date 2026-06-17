@@ -26,6 +26,10 @@ public class ChatMessage {
 
     private String message;
 
+    private String mediaUrl;
+
+    private String mediaType;
+
     @CreatedDate
     private Instant timestamp;
 }

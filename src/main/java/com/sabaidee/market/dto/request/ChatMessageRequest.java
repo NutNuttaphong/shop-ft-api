@@ -9,6 +9,9 @@ public class ChatMessageRequest {
     @NotBlank(message = "กรุณาระบุผู้รับ")
     private String receiver;
 
-    @NotBlank(message = "กรุณากรอกข้อความ")
     private String message;
+
+    private String mediaUrl;
+
+    private String mediaType;
 }
