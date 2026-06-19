@@ -190,16 +190,14 @@ public class DataInitializer implements CommandLineRunner {
     }
 
     private void seedPromotions() {
-        if (promotionRepository.count() > 0) {
-            log.info("✅ Promotions already exist, skipping seed.");
-            return;
-        }
+        // Clear promotions to enforce brand refresh
+        promotionRepository.deleteAll();
 
         List<Promotion> promotions = List.of(
             Promotion.builder()
                 .id("promo-1")
-                .code("SABAIDEE10")
-                .name("สบายดี ลด 10%")
+                .code("FRIST10")
+                .name("FRIST ลด 10%")
                 .description("ส่วนลด 10% สำหรับสมาชิกใหม่ ไม่มีขั้นต่ำ")
                 .discountType(DiscountType.PERCENTAGE)
                 .discountValue(10)
