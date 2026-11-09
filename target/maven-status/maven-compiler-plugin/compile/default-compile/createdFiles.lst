@@ -14,10 +14,13 @@ com\sabaidee\market\security\JwtTokenProvider.class
 com\sabaidee\market\service\DashboardService.class
 com\sabaidee\market\model\ChatMessage.class
 com\sabaidee\market\service\OrderService$1.class
+com\sabaidee\market\model\ShopeeVideo$ShopeeVideoBuilder.class
+com\sabaidee\market\repository\LiveStreamRepository.class
 com\sabaidee\market\dto\request\ProductRequest.class
 com\sabaidee\market\model\User.class
 com\sabaidee\market\dto\response\AnalyticsResponse$CategorySales$CategorySalesBuilder.class
 com\sabaidee\market\SabaideeMarketApplication.class
+com\sabaidee\market\repository\ShopeeVideoRepository.class
 com\sabaidee\market\service\AnalyticsService.class
 com\sabaidee\market\service\PromotionService.class
 com\sabaidee\market\dto\request\OrderDisputeRequest.class
@@ -38,6 +41,7 @@ com\sabaidee\market\dto\response\ApiResponse$ApiResponseBuilder.class
 com\sabaidee\market\dto\request\UpdateProfileRequest.class
 com\sabaidee\market\model\CustomerInfo$CustomerInfoBuilder.class
 com\sabaidee\market\controller\AuthController.class
+com\sabaidee\market\model\FeedPost.class
 com\sabaidee\market\config\DataInitializer.class
 com\sabaidee\market\controller\NotificationController.class
 com\sabaidee\market\config\MongoConfig.class
@@ -51,6 +55,7 @@ com\sabaidee\market\dto\request\ChatMessageRequest.class
 com\sabaidee\market\model\enums\PaymentMethod.class
 com\sabaidee\market\model\ProductReview.class
 com\sabaidee\market\repository\VisitorLogRepository.class
+com\sabaidee\market\model\LiveStream.class
 com\sabaidee\market\repository\NotificationRepository.class
 com\sabaidee\market\exception\InsufficientStockException.class
 com\sabaidee\market\repository\ChatMessageRepository.class
@@ -59,6 +64,7 @@ com\sabaidee\market\controller\ProductController.class
 com\sabaidee\market\dto\response\AuthResponse$AuthResponseBuilder.class
 com\sabaidee\market\exception\ResourceNotFoundException.class
 com\sabaidee\market\model\Product.class
+com\sabaidee\market\model\LiveStream$LiveStreamBuilder.class
 com\sabaidee\market\dto\response\PageResponse$PageResponseBuilder.class
 com\sabaidee\market\dto\response\ApiResponse.class
 com\sabaidee\market\dto\response\AnalyticsResponse$DailySales$DailySalesBuilder.class
@@ -68,6 +74,7 @@ com\sabaidee\market\model\VisitorLog$VisitorLogBuilder.class
 com\sabaidee\market\repository\ProductReviewRepository.class
 com\sabaidee\market\repository\PromotionRepository.class
 com\sabaidee\market\dto\request\CheckoutRequest.class
+com\sabaidee\market\repository\FeedPostRepository.class
 com\sabaidee\market\model\User$UserBuilder.class
 com\sabaidee\market\exception\DuplicateResourceException.class
 com\sabaidee\market\model\ProductReview$ProductReviewBuilder.class
@@ -80,7 +87,9 @@ com\sabaidee\market\dto\request\LoginRequest.class
 com\sabaidee\market\controller\AnalyticsController.class
 com\sabaidee\market\controller\PromotionController.class
 com\sabaidee\market\controller\AnalyticsController$VisitRequest.class
+com\sabaidee\market\controller\SocialCommerceController.class
 com\sabaidee\market\dto\response\AnalyticsResponse$TopProduct$TopProductBuilder.class
+com\sabaidee\market\model\FeedPost$FeedPostBuilder.class
 com\sabaidee\market\controller\CartController.class
 com\sabaidee\market\controller\OrderController.class
 com\sabaidee\market\dto\response\AnalyticsResponse$PaymentMethodSales$PaymentMethodSalesBuilder.class
@@ -91,6 +100,7 @@ com\sabaidee\market\controller\ChatController.class
 com\sabaidee\market\dto\response\AnalyticsResponse$TopProduct.class
 com\sabaidee\market\dto\response\PageResponse.class
 com\sabaidee\market\model\Notification$NotificationBuilder.class
+com\sabaidee\market\model\ShopeeVideo.class
 com\sabaidee\market\dto\response\AnalyticsResponse$CategorySales.class
 com\sabaidee\market\model\Notification.class
 com\sabaidee\market\dto\request\OrderReturnRequest.class
