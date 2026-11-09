@@ -1,26 +1,22 @@
-# Stage 1: Build stage
-FROM eclipse-temurin:17-jdk-jammy AS build
+# Stage 1: Build stage with official Maven + JDK 17
+FROM maven:3.9-eclipse-temurin-17 AS build
 WORKDIR /app
 
-# Copy maven wrapper and pom.xml
-COPY .mvn/ .mvn/
-COPY mvnw pom.xml ./
+# Copy pom.xml and pre-fetch dependencies for layer caching
+COPY pom.xml .
+RUN mvn dependency:go-offline -B || true
 
-# Make maven wrapper executable and download dependencies
-RUN chmod +x mvnw && ./mvnw dependency:go-offline -B || true
-
-# Copy source code and build
+# Copy source code and build production jar
 COPY src ./src
-RUN ./mvnw clean package -DskipTests
+RUN mvn clean package -DskipTests
 
-# Stage 2: Production runtime stage
+# Stage 2: Minimal Production JRE runtime
 FROM eclipse-temurin:17-jre-jammy
 WORKDIR /app
 
 # Copy built jar from build stage
 COPY --from=build /app/target/*.jar app.jar
 
-# Spring Boot default port
 ENV PORT=8080
 EXPOSE 8080
 
