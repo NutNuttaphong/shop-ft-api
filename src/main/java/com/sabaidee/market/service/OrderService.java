@@ -138,6 +138,19 @@ public class OrderService {
                 .orElseThrow(() -> new ResourceNotFoundException("ไม่พบออเดอร์รหัส: " + id));
     }
 
+    public Order getOrderByIdAndValidateAccess(String id, String username) {
+        Order order = getOrderById(id);
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new ResourceNotFoundException("ไม่พบผู้ใช้: " + username));
+
+        boolean isOwner = order.getUserId().equals(user.getId());
+        boolean isAdmin = user.getRole() == com.sabaidee.market.model.enums.UserRole.ADMIN;
+        if (!isOwner && !isAdmin) {
+            throw new org.springframework.security.access.AccessDeniedException("คุณไม่มีสิทธิ์เข้าถึงคำสั่งซื้อนี้");
+        }
+        return order;
+    }
+
     public Order updateOrderStatus(String id, OrderStatus status) {
         Order order = getOrderById(id);
         order.setStatus(status);

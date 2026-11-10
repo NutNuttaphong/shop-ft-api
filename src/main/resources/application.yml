@@ -18,7 +18,7 @@ logging:
 
 app:
   jwt:
-    secret: sabaidee-market-secret-key-2024-very-long-and-secure-key-minimum-256-bits
+    secret: ${APP_JWT_SECRET:sabaidee-market-secret-key-2024-very-long-and-secure-key-minimum-256-bits}
     expiration-ms: 86400000
 
 springdoc:

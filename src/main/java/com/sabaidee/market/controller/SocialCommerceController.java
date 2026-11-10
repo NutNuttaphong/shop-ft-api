@@ -10,6 +10,7 @@ import com.sabaidee.market.repository.ShopeeVideoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.Instant;
@@ -33,6 +34,7 @@ public class SocialCommerceController {
     }
 
     @PostMapping("/live")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<ApiResponse<LiveStream>> createLiveStream(@RequestBody LiveStream stream) {
         stream.setCreatedAt(Instant.now());
         stream.setStatus("STREAMING");
@@ -43,6 +45,7 @@ public class SocialCommerceController {
     }
 
     @PutMapping("/live/{id}/status")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<ApiResponse<LiveStream>> updateLiveStatus(
             @PathVariable String id, 
             @RequestParam String status) {
@@ -56,6 +59,7 @@ public class SocialCommerceController {
     }
 
     @PutMapping("/live/{id}/pin")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<ApiResponse<LiveStream>> pinProduct(
             @PathVariable String id, 
             @RequestParam(required = false) String productId) {
@@ -115,6 +119,7 @@ public class SocialCommerceController {
     }
 
     @PostMapping("/videos")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<ApiResponse<ShopeeVideo>> createVideo(@RequestBody ShopeeVideo video) {
         video.setCreatedAt(Instant.now());
         video.setViewCount(0);
@@ -170,6 +175,7 @@ public class SocialCommerceController {
     }
 
     @PostMapping("/feed")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<ApiResponse<FeedPost>> createFeedPost(@RequestBody FeedPost post) {
         post.setCreatedAt(Instant.now());
         post.setLikeCount(0);

@@ -40,10 +40,19 @@ public class NotificationController {
     }
 
     @PutMapping("/{id}/read")
-    public ResponseEntity<ApiResponse<Notification>> markAsRead(@PathVariable String id) {
+    public ResponseEntity<ApiResponse<Notification>> markAsRead(@PathVariable String id, Principal principal) {
+        User user = userRepository.findByUsername(principal.getName())
+                .orElseThrow(() -> new ResourceNotFoundException("ไม่พบผู้ใช้: " + principal.getName()));
+
         Notification notification = notificationRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("ไม่พบการแจ้งเตือนรหัส: " + id));
-        
+
+        boolean isOwner = notification.getUserId().equals(user.getId());
+        boolean isAdmin = user.getRole() == com.sabaidee.market.model.enums.UserRole.ADMIN;
+        if (!isOwner && !isAdmin) {
+            throw new org.springframework.security.access.AccessDeniedException("คุณไม่มีสิทธิ์เข้าถึงการแจ้งเตือนนี้");
+        }
+
         notification.setRead(true);
         notificationRepository.save(notification);
         return ResponseEntity.ok(ApiResponse.success(notification));

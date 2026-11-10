@@ -1,5 +1,6 @@
 package com.sabaidee.market.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.sabaidee.market.model.enums.UserRole;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -28,6 +29,7 @@ public class User {
     @Indexed(unique = true)
     private String username;
 
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
     private UserRole role;

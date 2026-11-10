@@ -43,8 +43,8 @@ public class OrderController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ApiResponse<Order>> getOrderById(@PathVariable String id) {
-        Order order = orderService.getOrderById(id);
+    public ResponseEntity<ApiResponse<Order>> getOrderById(@PathVariable String id, Principal principal) {
+        Order order = orderService.getOrderByIdAndValidateAccess(id, principal.getName());
         return ResponseEntity.ok(ApiResponse.success(order));
     }
 
